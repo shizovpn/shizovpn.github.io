@@ -722,8 +722,82 @@ function closeDoc() {
 .seo-section ul{padding-left:20px;margin-bottom:14px;font-size:.92rem}
 .seo-section ul li{margin-bottom:6px}
 .seo-divider{border:none;border-top:1px solid #1e2140;margin:0}
+
+/* FAQ accordion */
+.faq-section{max-width:720px;margin:0 auto;padding:60px 24px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.faq-section h2{font-size:1.5rem;font-weight:800;color:#e8eaf6;text-align:center;margin-bottom:32px}
+.faq-item{border:1px solid #1e2140;border-radius:12px;margin-bottom:10px;overflow:hidden;background:#0f1120}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:none;border:none;cursor:pointer;text-align:left;color:#e8eaf6;font-size:.95rem;font-weight:600;gap:12px}
+.faq-q:hover{background:#141730}
+.faq-icon{font-size:1.2rem;color:#5c6ef8;flex-shrink:0;transition:transform .25s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#6b7280;font-size:.88rem;line-height:1.7}
+.faq-a-inner{padding:0 20px 18px}
+.faq-item.open .faq-a{max-height:300px}
 </style>
+
 <hr class="seo-divider">
+
+<div class="faq-section">
+  <h2>Частые вопросы</h2>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Какой VPN не блокируется в России в 2026 году?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">В 2026 году не блокируются VPN на протоколах VLESS+Reality. Они маскируют трафик под обычный HTTPS — DPI их не распознаёт. Shizo VPN работает именно на этих протоколах.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Работает ли VPN на МТС, Билайн, Мегафон?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Да. Shizo VPN стабильно работает на всех российских операторах: МТС, Билайн, Мегафон, Теле2, Йота. Протокол Reality специально разработан для обхода операторских фильтров и белых списков IP.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Какое приложение использовать на iPhone?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Для iOS — <strong>Streisand</strong> (доступен в российском App Store, поддерживает Reality). На Android — v2rayNG или Hiddify. На Windows — v2rayN, на macOS — Hiddify или V2Box.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Почему VLESS+Reality не блокируется?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Reality маскирует VPN-трафик под обращение к реальным популярным сайтам. Система DPI видит обычный HTTPS и не может определить, что это VPN. В отличие от OpenVPN и WireGuard, Reality не имеет статических сигнатур для блокировки.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Как оплатить из России?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Оплата через СБП (Систему Быстрых Платежей) с любой российской карты. Подписка активируется автоматически сразу после оплаты.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Хранятся ли логи трафика?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Нет. Shizo VPN не хранит логи трафика. Сохраняется только email и дата окончания подписки — минимум для работы сервиса.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Работает ли YouTube, Instagram, Telegram через VPN?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Да. Весь трафик проходит через сервер в Финляндии — доступны YouTube, Instagram, заблокированные сайты и мессенджеры без ограничений.</div></div>
+  </div>
+</div>
+
 <section class="seo-section">
   <h2>VPN для России 2026 — что работает и почему</h2>
   <p>В 2026 году большинство традиционных VPN-протоколов заблокированы или работают нестабильно в России. OpenVPN, WireGuard и IKEv2 легко распознаются системами глубокой инспекции пакетов (DPI), установленными у всех крупных операторов — МТС, Билайн, Мегафон, Теле2.</p>
@@ -763,5 +837,13 @@ function closeDoc() {
   <h3>Как оплатить VPN из России?</h3>
   <p>Оплата через <strong>СБП</strong> с любой российской карты. Подписка активируется автоматически после оплаты.</p>
 </section>
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
 </body>
 </html>
