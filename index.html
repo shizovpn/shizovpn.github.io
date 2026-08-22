@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shizo VPN — быстрый VPN для России</title>
+<meta name="description" content="VPN — не блокируется Роскомнадзором. Работает на iOS, Android, Windows, macOS. От 100 рублей в месяц.">
+<meta name="google-site-verification" content="CFsHUsu_Et-iDAoHJ6YGKEwQXSjA_sM5sgKJ6JirkFs" />
+<meta name="verification" content="0c2f66f43752d47fb49abeea0badf47a" />
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shizo VPN — быстрый VPN для России">
+<meta property="og:description" content="Не блокируется Роскомнадзором. iOS, Android, Windows, macOS. От 100 рублей в месяц.">
+<link rel="canonical" href="https://shizovpn.github.io/">
+<meta name="keywords" content="vpn, впн, бесплатный впн, скрытый впн, надежный впн, быстрый впн, безопасный впн, анонимный впн, впн без логов, впн для России, vpn россия, обход блокировок, обход роскомнадзора, роскомнадзор, обход цензуры, впн телеграм, vpn телеграм, впн инстаграм, впн ютуб, vpn youtube, скачать впн, впн бесплатно, впн недорого, впн андроид, впн айфон, vpn android, vpn iphone, vpn ios, xray vpn,vpn без ограничений, защищенный интернет, анонимный интернет, скрытый интернет, приватный vpn, личный vpn, частный vpn, vpn купить, купить впн, подписка впн, shizo vpn">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Shizo VPN",
+  "description": "Быстрый и надёжный VPN для России. Не блокируется Роскомнадзором. Работает на iOS, Android, Windows, macOS.",
+  "offers": [
+    {"@type":"Offer","name":"Пробный","price":"10","priceCurrency":"RUB","description":"1 день доступа"},
+    {"@type":"Offer","name":"Базовый","price":"100","priceCurrency":"RUB","description":"1 месяц доступа"},
+    {"@type":"Offer","name":"Премиум","price":"200","priceCurrency":"RUB","description":"1 месяц приоритетного доступа"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Какой VPN не блокируется в России в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"В 2026 году не блокируются VPN на протоколах VLESS+Reality. Они маскируют трафик под обычный HTTPS, поэтому DPI их не распознаёт. Shizo VPN работает именно на этих протоколах."}},
+    {"@type":"Question","name":"Сколько стоит VPN для России?","acceptedAnswer":{"@type":"Answer","text":"Shizo VPN стоит от 100 рублей в месяц. Доступен пробный доступ на 1 день за 10 рублей и премиум тариф за 200 рублей в месяц."}},
+    {"@type":"Question","name":"Что такое протокол Reality и почему он не блокируется?","acceptedAnswer":{"@type":"Answer","text":"Reality — протокол для VPN, разработанный командой Xray. Он маскирует трафик под обращение к реальным популярным сайтам, поэтому DPI не может отличить его от обычного HTTPS. В отличие от OpenVPN и WireGuard, Reality не имеет статических сигнатур."}},
+    {"@type":"Question","name":"Работает ли VPN на мобильном интернете МТС, Билайн, Мегафон?","acceptedAnswer":{"@type":"Answer","text":"Да, Shizo VPN работает на всех российских операторах: МТС, Билайн, Мегафон, Теле2, Йота. Протокол VLESS+Reality специально разработан для обхода операторских фильтров."}},
+    {"@type":"Question","name":"Какое приложение использовать для VPN на iPhone?","acceptedAnswer":{"@type":"Answer","text":"Для iOS рекомендуется Streisand — доступен в российском App Store и поддерживает Reality. На Android — v2rayNG или Hiddify. На Windows — v2rayN, на macOS — Hiddify или V2Box."}},
+    {"@type":"Question","name":"Можно ли оплатить VPN картой российского банка?","acceptedAnswer":{"@type":"Answer","text":"Да, оплата принимается через СБП с любой российской карты. Подписка активируется автоматически после оплаты."}},
+    {"@type":"Question","name":"Хранит ли Shizo VPN логи?","acceptedAnswer":{"@type":"Answer","text":"Нет. Shizo VPN не хранит логи трафика. Сохраняется только email и дата окончания подписки."}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;
+  --surface:#0b0e1a;
+  --surface2:#0f1220;
+  --border:#1c2238;
+  --accent:#00cfff;
+  --accent-dim:#004d6e;
+  --text:#dde4f0;
+  --muted:#5a6783;
+  --error:#ff4545;
+  --ok:#00e87a;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+.page{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:20px}
+.page.active{display:flex}
+
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;gap:8px}
+@media(max-width:520px){nav{padding:10px 14px}.nav-support{display:none}}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;color:var(--text)}
+.logo span{color:var(--accent)}
+.nav-actions{display:flex;gap:10px}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;width:100%;max-width:420px}
+.card h2{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:20px;color:var(--text)}
+
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase;font-weight:500}
+.field input{width:100%;padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:.95rem;font-family:'Inter',sans-serif;outline:none;transition:border .15s}
+.field input:focus{border-color:var(--accent)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:7px;border:none;cursor:pointer;font-size:.88rem;font-family:'Inter',sans-serif;font-weight:600;transition:.15s;letter-spacing:.01em}
+.btn-primary{background:var(--accent);color:#060810;width:100%}
+.btn-primary:hover{background:#33d9ff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:7px 14px;font-size:.8rem}
+.btn-copy{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-copy:hover{border-color:var(--accent);color:var(--accent)}
+
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tier-full{grid-column:1/-1}
+.tier{border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:.15s;text-align:center;background:var(--bg)}
+.tier:hover{border-color:var(--accent)}
+.tier.selected{border-color:var(--accent);background:rgba(0,207,255,.05);box-shadow:0 0 0 1px var(--accent) inset}
+.tier-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;margin-bottom:4px}
+.tier-price{font-size:1.15rem;font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif}
+.tier-desc{font-size:.72rem;color:var(--muted);margin-top:4px}
+.tier.premium .tier-price{color:#f59e0b}
+
+.alert{padding:11px 15px;border-radius:7px;font-size:.85rem;margin-bottom:16px;display:none}
+.alert.error{background:rgba(255,69,69,.08);border:1px solid rgba(255,69,69,.3);color:#ff8a8a;display:block}
+.alert.success{background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.3);color:#4dffa0;display:block}
+
+.sub-active{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;width:100%;max-width:480px}
+.sub-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(0,232,122,.4);color:#00e87a;padding:5px 12px;border-radius:5px;font-size:.78rem;font-weight:600;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase;background:rgba(0,232,122,.06)}
+.sub-badge.premium{border-color:rgba(245,158,11,.4);color:#f59e0b;background:rgba(245,158,11,.06)}
+.vless-box{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:12px;font-family:'Space Grotesk',monospace;font-size:.7rem;word-break:break-all;color:var(--muted);margin:14px 0}
+.qr-wrap{display:flex;justify-content:center;margin:16px 0}
+.qr-wrap img{width:175px;height:175px;border-radius:8px;border:3px solid var(--border)}
+.actions-row{display:flex;gap:10px;flex-wrap:wrap}
+.expire-text{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+
+.hero{text-align:center;max-width:480px}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:12px;color:var(--text);letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);margin-bottom:24px;line-height:1.65;font-size:.95rem}
+.features{display:grid;gap:9px;margin-bottom:24px;text-align:left}
+.feat{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--muted);padding:9px 12px;border:1px solid var(--border);border-radius:7px;background:var(--surface)}
+.feat-icon{font-size:1rem;flex-shrink:0}
+.feat-text{color:var(--text)}
+
+.spinner{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-text{color:var(--muted);font-size:.88rem;text-align:center}
+
+.clients{margin-top:20px}
+.clients h3{font-size:.75rem;color:var(--muted);margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
+.client-list{display:grid;gap:7px}
+.client-item{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 13px;font-size:.8rem;color:var(--muted)}
+.client-item strong{color:var(--text);font-family:'Space Grotesk',sans-serif}
+
+.divider{text-align:center;color:var(--muted);font-size:.78rem;margin:14px 0;display:flex;align-items:center;gap:10px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.link-btn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:.85rem;font-family:'Inter',sans-serif}
+
+.pay-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:18px}
+.pay-tab{flex:1;padding:9px;text-align:center;font-size:.82rem;font-weight:600;font-family:'Space Grotesk',sans-serif;cursor:pointer;background:var(--bg);color:var(--muted);border:none;transition:.15s}
+.pay-tab.active{background:rgba(0,207,255,.08);color:var(--accent);border-bottom:2px solid var(--accent)}
+.pay-section{display:none}
+.pay-section.active{display:block}
+
+.crypto-addr{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:12px;font-family:'Space Grotesk',monospace;font-size:.75rem;word-break:break-all;color:var(--text);margin:10px 0;letter-spacing:.02em}
+.crypto-hint{font-size:.78rem;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.amount-display{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);margin:8px 0}
+.agree-row{display:flex;align-items:flex-start;gap:8px;margin:14px 0 10px;font-size:.82rem;color:var(--muted);line-height:1.5}
+.agree-row input[type=checkbox]{margin-top:2px;accent-color:var(--accent);width:15px;height:15px;flex-shrink:0;cursor:pointer}
+.agree-row a{color:var(--accent)}
+.doc-page{display:none;flex:1;flex-direction:column;padding:24px;overflow-y:auto}
+.doc-page.active{display:flex}
+.doc-body{max-width:680px;width:100%;margin:0 auto}
+.doc-body h1{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:20px;color:var(--text)}
+.doc-body h2{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:20px 0 8px;color:var(--text)}
+.doc-body p,.doc-body li{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:6px}
+.doc-body ul{padding-left:18px}
+.doc-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;padding:0}
+.doc-back:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span class="logo"><span>💊</span> Shizo VPN</span>
+    <button class="link-btn" style="font-size:.78rem" onclick="showDoc('about')">О нас</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <a href="https://t.me/tehnolog35" target="_blank" class="nav-support" style="font-size:.78rem;color:var(--muted)">Поддержка: @tehnolog35</a>
+    <div class="nav-actions" id="navActions">
+      <button class="btn btn-outline btn-sm" onclick="show('login')">Войти</button>
+      <button class="btn btn-primary btn-sm" onclick="show('register')">Регистрация</button>
+    </div>
+  </div>
+</nav>
+
+<div class="page active" id="page-landing">
+  <div class="hero">
+    <h1>Shizo VPN —<br><em>невидим для ТСПУ</em></h1>
+    <p>Не блокируется Роскомнадзором.<br>Подключайся с любых устройств.</p>
+    <div class="features">
+      <div class="feat"><span class="feat-icon">🛡</span><span class="feat-text">Невидим для DPI и систем блокировок</span></div>
+      <div class="feat"><span class="feat-icon">⚡</span><span class="feat-text">До 1 Гбит/с, сервер в Финляндии</span></div>
+      <div class="feat"><span class="feat-icon">📱</span><span class="feat-text">iOS, Android, Windows, macOS, Linux</span></div>
+      <div class="feat"><span class="feat-icon">🔒</span><span class="feat-text">Без логов трафика</span></div>
+    </div>
+    <div class="tiers" style="max-width:400px;margin:0 auto 24px">
+      <div class="tier tier-full"><div class="tier-name">Пробный</div><div class="tier-price">Бесплатно</div><div class="tier-desc">1 день</div></div>
+      <div class="tier"><div class="tier-name">Базовый</div><div class="tier-price">100₽</div><div class="tier-desc">/месяц</div></div>
+      <div class="tier premium"><div class="tier-name">Премиум</div><div class="tier-price">200₽</div><div class="tier-desc">/месяц</div></div>
+      <div class="tier"><div class="tier-name">Базовый год</div><div class="tier-price">1000₽</div><div class="tier-desc">/год</div></div>
+      <div class="tier premium"><div class="tier-name">Премиум год</div><div class="tier-price">2000₽</div><div class="tier-desc">/год · приоритет</div></div>
+    </div>
+    <button class="btn btn-primary" style="max-width:260px" onclick="show('register')">Начать →</button>
+  </div>
+</div>
+
+<div class="page" id="page-register">
+  <div class="card">
+    <h2>Регистрация</h2>
+    <div class="alert" id="reg-alert"></div>
+    <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="you@example.com"></div>
+    <div class="field"><label>Пароль</label><input type="password" id="reg-pass" placeholder="минимум 8 символов"></div>
+    <button class="btn btn-primary" onclick="doRegister()">Создать аккаунт</button>
+    <div class="divider">или</div>
+    <div style="text-align:center"><button class="link-btn" onclick="show('login')">Уже есть аккаунт? Войти</button></div>
+  </div>
+</div>
+
+<div class="page" id="page-login">
+  <div class="card">
+    <h2>Вход</h2>
+    <div class="alert" id="login-alert"></div>
+    <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="you@example.com"></div>
+    <div class="field"><label>Пароль</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+    <button class="btn btn-primary" onclick="doLogin()">Войти</button>
+    <div class="divider">или</div>
+    <div style="text-align:center"><button class="link-btn" onclick="show('register')">Нет аккаунта? Зарегистрироваться</button></div>
+  </div>
+</div>
+
+<div class="page" id="page-cabinet-empty">
+  <div class="card">
+    <h2>Выберите тариф</h2>
+    <div class="alert" id="pay-alert"></div>
+    <div class="tiers">
+      <div class="tier tier-full" data-tier="trial" onclick="selectTier(this)">
+        <div class="tier-name">Пробный</div>
+        <div class="tier-price">Бесплатно</div>
+        <div class="tier-desc">1 день</div>
+      </div>
+      <div class="tier selected" data-tier="basic" onclick="selectTier(this)">
+        <div class="tier-name">Базовый</div>
+        <div class="tier-price">100₽</div>
+        <div class="tier-desc">/месяц</div>
+      </div>
+      <div class="tier premium" data-tier="premium" onclick="selectTier(this)">
+        <div class="tier-name">Премиум</div>
+        <div class="tier-price">200₽</div>
+        <div class="tier-desc">/месяц · приоритет</div>
+      </div>
+      <div class="tier" data-tier="basic_year" onclick="selectTier(this)">
+        <div class="tier-name">Базовый год</div>
+        <div class="tier-price">1000₽</div>
+        <div class="tier-desc">/год</div>
+      </div>
+      <div class="tier premium" data-tier="premium_year" onclick="selectTier(this)">
+        <div class="tier-name">Премиум год</div>
+        <div class="tier-price">2000₽</div>
+        <div class="tier-desc">/год · приоритет</div>
+      </div>
+    </div>
+
+    <div class="pay-tabs" id="pay-tabs-wrap">
+      <button class="pay-tab active" onclick="switchPay('card', event)">💳 Карта / СБП</button>
+      <button class="pay-tab" onclick="switchPay('crypto', event)">₿ Крипта</button>
+    </div>
+
+    <div class="pay-section active" id="pay-card">
+      <button class="btn btn-primary" id="pay-btn" style="opacity:.4;pointer-events:none" onclick="doPay()">Оплатить</button>
+    </div>
+
+    <div class="pay-section" id="pay-crypto">
+      <div class="crypto-hint" style="margin-bottom:8px">Переведи эквивалент <strong id="usdt-rub-amount" style="color:var(--accent)">100₽</strong> в USDT на адрес:</div>
+      <div class="crypto-addr" id="usdt-addr">TXRJY3aMyMrCh7ZJhJwod2Khkdcnbt7pT1</div>
+      <button class="btn btn-copy btn-sm" style="width:100%;margin-bottom:10px" onclick="copyCP('usdt-addr')">📋 Скопировать адрес</button>
+      <div class="crypto-hint" style="font-size:.78rem">Сеть: <strong>USDT TRC-20 (Tron)</strong>. После перевода напиши в поддержку <strong>@tehnolog35</strong> — подписка будет активирована.</div>
+    </div>
+
+    <div class="divider">или</div>
+    <div class="field" style="margin:0">
+      <label>Промокод</label>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="promo-input" placeholder="Введите промокод" style="flex:1">
+        <button class="btn btn-outline" id="promo-btn" style="opacity:.4;pointer-events:none" onclick="doPromo()">Применить</button>
+      </div>
+    </div>
+
+    <label class="agree-row" style="margin-top:16px">
+      <input type="checkbox" id="agree-check" onchange="toggleAgreement()">
+      <span>Я принимаю <a href="#" onclick="showDoc('terms');return false">Пользовательское соглашение</a> и <a href="#" onclick="showDoc('privacy');return false">Политику конфиденциальности</a></span>
+    </label>
+  </div>
+</div>
+
+<div class="page" id="page-cabinet-active">
+  <div class="sub-active" id="sub-card">
+    <div class="sub-badge" id="sub-badge">✓ Активна</div>
+    <div class="expire-text" id="expire-text"></div>
+    <div class="qr-wrap"><a id="qr-link" href="#"><img id="qr-img" src="" alt="QR-код подключения"></a></div>
+    <div style="font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:8px">Отсканируй QR-код <strong style="color:var(--text)">внутри приложения</strong> (не камерой) или скопируй ссылку</div>
+    <div class="vless-box" id="vless-box"></div>
+    <div class="actions-row">
+      <button class="btn btn-copy btn-sm" onclick="copyVless()">📋 Скопировать</button>
+    </div>
+    <div class="clients">
+      <h3>Как подключиться:</h3>
+      <div class="client-list">
+        <div class="client-item"><strong>iPhone / iPad</strong> — <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand</a> → «+» → вставь ссылку. ⚠️ Happ не работает</div>
+        <div class="client-item"><strong>Android</strong> — <a href="https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box" target="_blank">V2box</a> → «+» → вставь ссылку. ⚠️ Hiddify не работает</div>
+        <div class="client-item"><strong>Windows</strong> — <a href="https://github.com/2dust/v2rayN/releases/latest" target="_blank">v2rayN</a> → «Добавить сервер» → «Из буфера обмена»</div>
+        <div class="client-item"><strong>macOS</strong> — <a href="https://apps.apple.com/app/foxray/id6448898396" target="_blank">FoXray</a> или <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand</a> → «+» → вставь ссылку. ⚠️ Hiddify не поддерживает нужный режим</div>
+        <div class="client-item"><strong>Linux</strong> — скопируй ссылку, затем используй <a href="https://github.com/v2rayA/v2rayA" target="_blank">v2rayA</a> (web-интерфейс, для Arch / Debian / RPM), <a href="https://github.com/MatsuriDayo/nekoray" target="_blank">Nekoray</a> (GUI, есть в AUR), или XRay CLI: <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:.72rem">bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install</code></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-paying">
+  <div class="spinner"></div>
+  <div class="spin-text">Переходим к оплате…</div>
+</div>
+
+<div class="page" id="page-polling">
+  <div class="spinner"></div>
+  <div class="spin-text">Ожидаем подтверждение оплаты…<br><small style="color:#374151">Это может занять до 1 минуты</small></div>
+</div>
+
+<div class="doc-page" id="page-terms">
+  <div class="doc-body">
+    <button class="doc-back" onclick="closeDoc()">← Назад</button>
+    <h1>Пользовательское соглашение (Публичная оферта)</h1>
+    <h2>1. Предмет договора</h2>
+    <p>1.1. Оператор предоставляет Пользователю доступ к VPN-сервису Shizo VPN на условиях выбранного тарифа.</p>
+    <p>1.2. Сервис предназначен для защиты интернет-соединения и обхода сетевых ограничений в личных целях.</p>
+    <h2>2. Тарифы и оплата</h2>
+    <p>2.1. Доступны следующие тарифы:</p>
+    <ul>
+      <li>Пробный: бесплатно / 1 день</li>
+      <li>Базовый: 100 ₽ / 1 месяц</li>
+      <li>Премиум: 200 ₽ / 1 месяц — приоритетное подключение при высокой нагрузке; оператор вправе снизить приоритет базового соединения в пользу премиум-пользователя</li>
+      <li>Базовый год: 1 000 ₽ / 12 месяцев</li>
+      <li>Премиум год: 2 000 ₽ / 12 месяцев — приоритетное подключение на год</li>
+    </ul>
+    <p>2.2. Оплата принимается следующими способами:</p>
+    <ul>
+      <li>Банковская карта / СБП (через платёжный сервис Rukassa)</li>
+      <li>USDT TRC-20 (сеть Tron), адрес указан на сайте</li>
+    </ul>
+    <p>2.3. Подписка активируется автоматически после подтверждения оплаты. При оплате криптовалютой — после подтверждения оператором через поддержку @tehnolog35.</p>
+    <p>2.4. Подписка не продлевается автоматически.</p>
+    <h2>3. Права и обязанности сторон</h2>
+    <p>3.1. Оператор обязуется:</p>
+    <ul>
+      <li>Обеспечивать работу сервиса с целевым аптаймом 95%+</li>
+      <li>Не хранить логи интернет-активности пользователей</li>
+      <li>Уведомлять об изменениях условий не менее чем за 3 дня</li>
+    </ul>
+    <p>3.2. Пользователь обязуется:</p>
+    <ul>
+      <li>Не использовать сервис для незаконной деятельности</li>
+      <li>Не передавать доступ третьим лицам (ограничение: до 3 устройств одновременно)</li>
+      <li>Не предпринимать попыток взлома или перегрузки инфраструктуры</li>
+    </ul>
+    <h2>4. Ограничения использования</h2>
+    <p>4.1. Запрещено использование сервиса для: рассылки спама, DDoS-атак, распространения вредоносного ПО, доступа к CSAM и иного незаконного контента.</p>
+    <p>4.2. Запрещён доступ к ресурсам, признанным экстремистскими, террористическими или иным образом запрещённым законодательством Российской Федерации и других государств. Пользователь самостоятельно несёт полную юридическую ответственность за посещение таких ресурсов. Оператор осуждает экстремизм и терроризм в любых формах.</p>
+    <p>4.3. При нарушении пунктов 4.1–4.2 оператор вправе немедленно заблокировать доступ без возврата средств.</p>
+    <h2>5. Возврат средств</h2>
+    <p>5.1. Возврат осуществляется в случае технической недоступности сервиса более 72 часов подряд по вине оператора.</p>
+    <p>5.2. Возврат не производится при нарушении пользователем раздела 4, а также если услуга была частично использована.</p>
+    <p>5.3. Для запроса возврата обратитесь в поддержку: @tehnolog35</p>
+    <h2>6. Ответственность</h2>
+    <p>6.1. Оператор не несёт ответственности за действия пользователя в сети интернет.</p>
+    <p>6.2. Сервис предоставляется «как есть». Оператор не гарантирует 100% анонимность и не несёт ответственности за блокировку сервиса со стороны провайдеров или государственных органов.</p>
+    <h2>7. Расторжение</h2>
+    <p>7.1. Пользователь вправе прекратить использование сервиса в любое время. Остаток оплаченного периода не компенсируется.</p>
+    <p>7.2. Оператор вправе расторгнуть договор при нарушении раздела 4.</p>
+    <h2>8. Контакты</h2>
+    <p>Поддержка: @tehnolog35</p>
+  </div>
+</div>
+
+<div class="doc-page" id="page-about">
+  <div class="doc-body">
+    <button class="doc-back" onclick="closeDoc()">← Назад</button>
+    <h1>О нас</h1>
+
+    <h2>Для кого мы</h2>
+    <p>Shizo VPN — сервис для людей, которым нужен стабильный и быстрый VPN. Мы делаем его для друзей: без корпоративной воды и маркетинга. Если у тебя есть знакомые, которым нужен VPN — скинь им ссылку.</p>
+
+    <h2>Технология</h2>
+    <p>Мы используем один из самых современных протоколов передачи данных с встроенной обфускацией трафика. Это означает, что ваше соединение выглядит как обычный HTTPS — системы глубокой инспекции пакетов не видят, что вы используете VPN. Сервер расположен в Финляндии.</p>
+
+    <h2>Премиум — за что платите</h2>
+    <p>При высокой нагрузке на сервер базовые пользователи могут испытывать замедление. Премиум-подписка гарантирует приоритет: ваше соединение обслуживается первым. Вы платите не за скорость «в вакууме», а за стабильность в пиковые часы.</p>
+
+    <h2>Позиция по экстремизму</h2>
+    <p>Мы категорически осуждаем экстремизм, терроризм и любую деятельность, признанную незаконной на территории РФ и других государств. VPN предназначен для защиты приватности и обхода сетевых ограничений в личных целях.</p>
+    <p>Пользователь самостоятельно несёт полную юридическую ответственность за посещение ресурсов, признанных экстремистскими или иным образом запрещённых законодательством. Оператор не контролирует и не несёт ответственности за действия пользователей в сети.</p>
+
+    <h2>Контакты</h2>
+    <p>Поддержка: <a href="https://t.me/tehnolog35" target="_blank">@tehnolog35</a></p>
+  </div>
+</div>
+
+<div class="doc-page" id="page-privacy">
+  <div class="doc-body">
+    <button class="doc-back" onclick="closeDoc()">← Назад</button>
+    <h1>Политика конфиденциальности</h1>
+    <h2>1. Общие положения</h2>
+    <p>Настоящая политика описывает порядок обработки персональных данных пользователей сервиса Shizo VPN в соответствии с Федеральным законом №152-ФЗ «О персональных данных».</p>
+    <h2>2. Какие данные мы собираем</h2>
+    <ul>
+      <li>Адрес электронной почты (при регистрации)</li>
+      <li>IP-адрес (в технических логах nginx, хранятся не более 7 дней)</li>
+      <li>Данные об оплате (обрабатываются платёжными сервисами, мы не храним реквизиты карт)</li>
+    </ul>
+    <h2>3. Что мы не собираем</h2>
+    <p>Мы не ведём логи интернет-активности пользователей (посещённые сайты, запросы, трафик).</p>
+    <h2>4. Цели обработки данных</h2>
+    <ul>
+      <li>Предоставление доступа к сервису</li>
+      <li>Обработка платежей и активация подписок</li>
+      <li>Техническая поддержка пользователей</li>
+    </ul>
+    <h2>5. Передача данных третьим лицам</h2>
+    <p>Данные не передаются третьим лицам, за исключением случаев, предусмотренных законодательством РФ, а также платёжным сервисам в объёме, необходимом для обработки платежа.</p>
+    <h2>6. Хранение данных</h2>
+    <p>Email и данные подписки хранятся в течение срока действия аккаунта. Технические логи хранятся не более 7 дней.</p>
+    <h2>7. Права пользователя</h2>
+    <p>Вы вправе запросить удаление своих данных, обратившись в поддержку: @tehnolog35</p>
+    <h2>8. Контакты</h2>
+    <p>По вопросам обработки персональных данных: @tehnolog35</p>
+  </div>
+</div>
+
+<script>
+const BACKEND = 'https://77.221.159.78.nip.io';
+
+let token = localStorage.getItem('vpn_token');
+let userEmail = localStorage.getItem('vpn_email');
+let selectedTier = 'basic';
+let selectedPay = 'card';
+let currentVless = '';
+let cryptoOrderID = null;
+let cryptoTimerInterval = null;
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(location.search);
+  const orderID = params.get('order_id');
+  if (orderID) { show('polling'); pollOrder(orderID); return; }
+  if (token) { updateNav(true); await loadCabinet(); }
+  else show('landing');
+});
+
+function updateNav(loggedIn) {
+  const nav = document.getElementById('navActions');
+  if (loggedIn) {
+    nav.innerHTML = `<span style="color:var(--muted);font-size:.82rem">${userEmail}</span>
+      <button class="btn btn-outline btn-sm" onclick="logout()">Выйти</button>`;
+  } else {
+    nav.innerHTML = `<button class="btn btn-outline btn-sm" onclick="show('login')">Войти</button>
+      <button class="btn btn-primary btn-sm" onclick="show('register')">Регистрация</button>`;
+  }
+}
+
+function logout() {
+  localStorage.removeItem('vpn_token');
+  localStorage.removeItem('vpn_email');
+  token = null; userEmail = null;
+  updateNav(false); show('landing');
+}
+
+function show(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+}
+
+function switchPay(method, e) {
+  selectedPay = method;
+  document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pay-section').forEach(s => s.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('pay-' + method).classList.add('active');
+  if (method === 'crypto') updateCryptoUI();
+}
+
+function updateCryptoUI() {
+  const prices = {trial: 0, basic: 100, premium: 200, basic_year: 1000, premium_year: 2000};
+  const el = document.getElementById('usdt-rub-amount');
+  if (el) el.textContent = (prices[selectedTier] || 100) + '₽';
+}
+
+async function doRegister() {
+  const email = document.getElementById('reg-email').value.trim();
+  const pass  = document.getElementById('reg-pass').value;
+  const alert = document.getElementById('reg-alert');
+  alert.className = 'alert';
+  const res = await api('/api/auth/register', {email, password: pass});
+  if (res.error) { showAlert(alert, humanError(res.error), 'error'); return; }
+  token = res.token; userEmail = res.email;
+  localStorage.setItem('vpn_token', token);
+  localStorage.setItem('vpn_email', userEmail);
+  updateNav(true); await loadCabinet();
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-pass').value;
+  const alert = document.getElementById('login-alert');
+  alert.className = 'alert';
+  const res = await api('/api/auth/login', {email, password: pass});
+  if (res.error || !res.token) { showAlert(alert, humanError(res.error || 'invalid email or password'), 'error'); return; }
+  token = res.token; userEmail = res.email;
+  localStorage.setItem('vpn_token', token);
+  localStorage.setItem('vpn_email', userEmail);
+  updateNav(true); await loadCabinet();
+}
+
+async function loadCabinet() {
+  const res = await apiAuth('/api/me/subscription');
+  if (res.status === 'active') showActiveSub(res);
+  else show('cabinet-empty');
+}
+
+function showActiveSub(sub) {
+  currentVless = sub.vless_url;
+  const badge = document.getElementById('sub-badge');
+  badge.textContent = sub.tier === 'premium' ? '★ Премиум активна' : '✓ Подписка активна';
+  badge.className = 'sub-badge' + (sub.tier === 'premium' ? ' premium' : '');
+  const exp = new Date(sub.expires_at);
+  document.getElementById('expire-text').textContent =
+    'Действует до: ' + exp.toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('vless-box').textContent = sub.vless_url;
+  if (sub.qr_code) {
+    document.getElementById('qr-img').src = 'data:image/png;base64,' + sub.qr_code;
+    document.getElementById('qr-link').href = sub.vless_url;
+  }
+  show('cabinet-active');
+}
+
+function selectTier(el) {
+  document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTier = el.dataset.tier;
+  const payBtn = document.getElementById('pay-btn');
+  if (payBtn) payBtn.textContent = selectedTier === 'trial' ? 'Оформить' : 'Оплатить';
+  if (selectedPay === 'crypto') updateCryptoUI();
+}
+
+async function doPay() {
+  const alert = document.getElementById('pay-alert');
+  alert.className = 'alert';
+  show('paying');
+  const res = await apiAuth('/api/payment/create', {tier: selectedTier});
+  if (res.error) { show('cabinet-empty'); showAlert(alert, humanError(res.error), 'error'); return; }
+  if (res.activated) { await loadCabinet(); return; }
+  window.location.href = res.payment_url;
+}
+
+async function pollOrder(orderID) {
+  for (let i = 0; i < 60; i++) {
+    await sleep(4000);
+    const res = await fetch(`${BACKEND}/api/subscription/order/${orderID}`).then(r => r.json()).catch(() => ({}));
+    if (res.status === 'active') {
+      token = localStorage.getItem('vpn_token');
+      if (token) { updateNav(true); await loadCabinet(); }
+      else show('login');
+      history.replaceState({}, '', location.pathname);
+      return;
+    }
+  }
+  show('login');
+}
+
+async function doPromo() {
+  const code  = document.getElementById('promo-input').value.trim();
+  const alert = document.getElementById('pay-alert');
+  alert.className = 'alert';
+  const res = await apiAuth('/api/promo/apply', {code});
+  if (res.error) { showAlert(alert, humanError(res.error), 'error'); return; }
+  await loadCabinet();
+}
+
+async function doCreateCryptoOrder() {
+  const alertEl = document.getElementById('pay-alert');
+  alertEl.className = 'alert';
+
+  const res = await apiAuth('/api/payment/crypto/create', {tier: selectedTier});
+  if (res.error) { showAlert(alertEl, humanError(res.error), 'error'); return; }
+
+  cryptoOrderID = res.id;
+
+  const btcFormatted = res.btc_amount.toFixed(8) + ' BTC';
+  document.getElementById('cp-amount').textContent = btcFormatted;
+  document.getElementById('cp-amount-raw').textContent = res.btc_amount.toFixed(8);
+  document.getElementById('cp-address').textContent = res.address;
+  document.getElementById('cp-status').textContent = 'ожидание транзакции…';
+
+  if (cryptoTimerInterval) clearInterval(cryptoTimerInterval);
+  const expiresAt = new Date(res.expires_at);
+  cryptoTimerInterval = setInterval(() => {
+    const left = Math.max(0, expiresAt - Date.now());
+    const m = String(Math.floor(left / 60000)).padStart(2, '0');
+    const s = String(Math.floor((left % 60000) / 1000)).padStart(2, '0');
+    document.getElementById('cp-timer').textContent = m + ':' + s;
+    if (left === 0) clearInterval(cryptoTimerInterval);
+  }, 1000);
+
+  show('crypto-pay');
+  pollCryptoOrder();
+}
+
+async function pollCryptoOrder() {
+  for (let i = 0; i < 60; i++) {
+    await sleep(10000);
+    if (!cryptoOrderID) return;
+    const res = await fetch(`${BACKEND}/api/payment/crypto/${cryptoOrderID}`).then(r => r.json()).catch(() => ({}));
+    if (res.status === 'paid') {
+      clearInterval(cryptoTimerInterval);
+      document.getElementById('cp-status').textContent = '✓ Оплачено!';
+      await sleep(1500);
+      updateNav(true);
+      await loadCabinet();
+      return;
+    }
+    if (res.status === 'expired') {
+      clearInterval(cryptoTimerInterval);
+      showAlert(document.getElementById('crypto-pay-alert'), 'Время истекло. Создай новый заказ.', 'error');
+      return;
+    }
+  }
+}
+
+function copyCP(elemId) {
+  const text = document.getElementById(elemId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+function copyVless() {
+  navigator.clipboard.writeText(currentVless).then(() => {
+    const btn = event.target;
+    btn.textContent = '✓ Скопировано';
+    setTimeout(() => btn.textContent = '📋 Скопировать', 2000);
+  });
+}
+
+async function api(path, body) {
+  try {
+    const r = await fetch(BACKEND + path, {
+      method: body ? 'POST' : 'GET',
+      headers: {'Content-Type': 'application/json'},
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    return await r.json();
+  } catch { return {error: 'Сервер недоступен'}; }
+}
+
+async function apiAuth(path, body) {
+  try {
+    const r = await fetch(BACKEND + path, {
+      method: body ? 'POST' : 'GET',
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    return await r.json();
+  } catch { return {error: 'Сервер недоступен'}; }
+}
+
+function showAlert(el, msg, type) { el.textContent = msg; el.className = 'alert ' + type; }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function toggleAgreement() {
+  const checked = document.getElementById('agree-check').checked;
+  const opacity = checked ? '1' : '0.4';
+  const events = checked ? 'auto' : 'none';
+  ['pay-btn', 'promo-btn'].forEach(id => {
+    document.getElementById(id).style.opacity = opacity;
+    document.getElementById(id).style.pointerEvents = events;
+  });
+}
+
+const ERROR_MAP = {
+  'email already registered': 'Этот email уже зарегистрирован',
+  'email required and password must be at least 8 characters': 'Введи email и пароль (не менее 8 символов)',
+  'invalid email or password': 'Неверный email или пароль',
+  'invalid request': 'Некорректный запрос',
+  'invalid request body': 'Некорректный запрос',
+  'authorization required': 'Необходима авторизация',
+  'invalid token': 'Сессия истекла, войди снова',
+  'already have an active subscription': 'У тебя уже есть активная подписка',
+  'invalid promo code': 'Промокод недействителен или истёк',
+  'code required': 'Введи промокод',
+  'promo code already used for this account': 'Этот промокод уже был использован',
+  'tier required (basic, premium, trial)': 'Выбери тариф',
+  'tier must be basic, premium or trial': 'Неверный тариф',
+  'payment provider error': 'Ошибка платёжного сервиса — попробуй позже',
+  'crypto payments not configured': 'Крипто-оплата временно недоступна',
+  'unknown tier': 'Неверный тариф',
+  'not found': 'Не найдено',
+  'database error': 'Внутренняя ошибка — попробуй позже',
+  'db error': 'Внутренняя ошибка — попробуй позже',
+  'internal error': 'Внутренняя ошибка — попробуй позже',
+  'server unavailable': 'Сервер недоступен',
+  'Сервер недоступен': 'Сервер недоступен',
+};
+function humanError(msg) {
+  return ERROR_MAP[msg] || msg;
+}
+
+let _docReturnPage = 'cabinet-empty';
+function showDoc(type) {
+  const activePage = document.querySelector('.page.active');
+  _docReturnPage = activePage ? activePage.id.replace('page-', '') : 'cabinet-empty';
+  document.querySelectorAll('.page,.doc-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + type).classList.add('active');
+}
+function closeDoc() {
+  document.querySelectorAll('.page,.doc-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + _docReturnPage).classList.add('active');
+}
+</script>
+
+<style>
+.seo-section{max-width:720px;margin:0 auto;padding:60px 24px;color:#6b7280;line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.seo-section h2{font-size:1.4rem;font-weight:700;color:#e8eaf6;margin:40px 0 14px}
+.seo-section h3{font-size:1.05rem;font-weight:600;color:#e8eaf6;margin:28px 0 10px}
+.seo-section p{margin-bottom:14px;font-size:.92rem}
+.seo-section ul{padding-left:20px;margin-bottom:14px;font-size:.92rem}
+.seo-section ul li{margin-bottom:6px}
+.seo-divider{border:none;border-top:1px solid #1e2140;margin:0}
+</style>
+<hr class="seo-divider">
+<section class="seo-section">
+  <h2>VPN для России 2026 — что работает и почему</h2>
+  <p>В 2026 году большинство традиционных VPN-протоколов заблокированы или работают нестабильно в России. OpenVPN, WireGuard и IKEv2 легко распознаются системами глубокой инспекции пакетов (DPI), установленными у всех крупных операторов — МТС, Билайн, Мегафон, Теле2.</p>
+  <p>Shizo VPN использует протоколы нового поколения — <strong>VLESS с расширением Reality</strong>, разработанные командой Xray специально для обхода современных систем блокировки. Reality маскирует трафик под обычные HTTPS-соединения — DPI не может определить, что это VPN.</p>
+
+  <h2>Почему VLESS+Reality не блокируется Роскомнадзором</h2>
+  <ul>
+    <li><strong>Нет статических сигнатур</strong> — каждое соединение выглядит уникально</li>
+    <li><strong>Маскировка под реальные домены</strong> — трафик неотличим от обычного браузинга</li>
+    <li><strong>Работает в белых списках операторов</strong> — проходит через фильтрацию по IP</li>
+    <li><strong>Поддержка UDP и TCP</strong> — стабильная работа для видео, игр и мессенджеров</li>
+  </ul>
+
+  <h2>Как подключить VPN на iPhone в 2026 году</h2>
+  <p>Для iOS рекомендуется <strong>Streisand</strong> — доступен в российском App Store и поддерживает протокол Reality. Зарегистрируйтесь на shizovpn.github.io, оплатите подписку, получите VLESS-ссылку и QR-код. В Streisand нажмите «+» → «Вставить из буфера обмена» или отсканируйте QR-код.</p>
+
+  <h2>Как подключить VPN на Android</h2>
+  <p>На Android рекомендуем <strong>v2rayNG</strong> или <strong>Hiddify</strong> — бесплатны, доступны в Google Play, поддерживают VLESS+Reality. После получения ссылки в личном кабинете нажмите «+» и вставьте конфигурацию из буфера.</p>
+
+  <h2>VPN на мобильном интернете — работает ли в России</h2>
+  <p>Да. Shizo VPN стабильно работает на <strong>МТС, Билайн, Мегафон, Теле2, Йота</strong>. Протокол Reality разработан специально для обхода операторских фильтров и белых списков IP.</p>
+
+  <h2>Часто задаваемые вопросы</h2>
+
+  <h3>Какой VPN купить для России в 2026 году?</h3>
+  <p>Выбирайте VPN с протоколом VLESS+Reality. Классические протоколы в 2026 году нестабильны или заблокированы. Shizo VPN работает на VLESS+Reality — 100 рублей в месяц.</p>
+
+  <h3>Можно ли использовать бесплатный VPN в России?</h3>
+  <p>Большинство бесплатных VPN используют устаревшие протоколы и заблокированы. Shizo VPN предлагает пробный доступ на 1 день за 10 рублей.</p>
+
+  <h3>Безопасен ли VPN — хранятся ли логи?</h3>
+  <p>Shizo VPN не хранит логи трафика. Сохраняется только email и дата окончания подписки.</p>
+
+  <h3>Работает ли VPN для YouTube, Instagram, Telegram?</h3>
+  <p>Да. Весь трафик проходит через сервер в Финляндии — доступны YouTube, Instagram, заблокированные сайты и мессенджеры.</p>
+
+  <h3>Как оплатить VPN из России?</h3>
+  <p>Оплата через <strong>СБП</strong> с любой российской карты. Подписка активируется автоматически после оплаты.</p>
+</section>
+</body>
+</html>

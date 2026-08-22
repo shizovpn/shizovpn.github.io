@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shizovpn.github.io/sitemap.xml
