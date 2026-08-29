@@ -560,15 +560,8 @@ async function doPay() {
   alert.className = 'alert';
   show('paying');
   const res = await apiAuth('/api/payment/create', {tier: selectedTier});
-  if (res.error) {
-    // Even on network error, subscription might have been created — check first
-    const sub = await apiAuth('/api/me/subscription');
-    if (sub.status === 'active') { showActiveSub(sub); return; }
-    show('cabinet-empty');
-    showAlert(alert, humanError(res.error), 'error');
-    return;
-  }
-  if (res.activated) { await loadCabinet(); return; }
+  if (res.error) { show('cabinet-empty'); showAlert(alert, humanError(res.error), 'error'); return; }
+  if (res.activated) { showActiveSub(await apiAuth('/api/me/subscription')); return; }
   window.location.href = res.payment_url;
 }
 
