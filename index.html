@@ -306,9 +306,9 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:13px
     <div id="ref-block" style="margin-top:20px;padding:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:none">
       <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:6px">🎁 Пригласи друга — получи +30 дней</div>
       <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px">Друг получит +14 дней при первой оплате. Бонус начисляется автоматически.</div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input type="text" id="ref-link-input" readonly style="flex:1;font-size:.78rem;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--text)">
-        <button class="btn btn-outline btn-sm" onclick="copyRefLink()">Скопировать</button>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+        <input type="text" id="ref-link-input" readonly style="flex:1;min-width:0;font-size:.78rem;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--text)">
+        <button class="btn btn-outline btn-sm" onclick="copyRefLink()" style="white-space:nowrap">Скопировать</button>
       </div>
       <div style="font-size:.78rem;color:var(--muted);margin-top:8px" id="ref-stats"></div>
     </div>
