@@ -614,7 +614,7 @@ function copyVless() {
   });
 }
 
-async function api(path, body) {
+async function api(path, body, retries = 2) {
   try {
     const r = await fetch(BACKEND + path, {
       method: body ? 'POST' : 'GET',
@@ -622,10 +622,13 @@ async function api(path, body) {
       body: body ? JSON.stringify(body) : undefined,
     });
     return await r.json();
-  } catch { return {error: 'Сервер недоступен'}; }
+  } catch {
+    if (retries > 0) { await sleep(1500); return api(path, body, retries - 1); }
+    return {error: 'Сервер недоступен'};
+  }
 }
 
-async function apiAuth(path, body) {
+async function apiAuth(path, body, retries = 2) {
   try {
     const r = await fetch(BACKEND + path, {
       method: body ? 'POST' : 'GET',
@@ -633,7 +636,10 @@ async function apiAuth(path, body) {
       body: body ? JSON.stringify(body) : undefined,
     });
     return await r.json();
-  } catch { return {error: 'Сервер недоступен'}; }
+  } catch {
+    if (retries > 0) { await sleep(1500); return apiAuth(path, body, retries - 1); }
+    return {error: 'Сервер недоступен'};
+  }
 }
 
 function showAlert(el, msg, type) { el.textContent = msg; el.className = 'alert ' + type; }
