@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Что такое VLESS+Reality — технология VPN которую не блокирует Россия</title>
+  <meta name="description" content="VLESS+Reality — протокол VPN который обходит ТСПУ в России. Работает там где OpenVPN и WireGuard заблокированы. Простое объяснение как это работает.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://shizovpn.github.io/vless-reality.html">
+  <meta property="og:title" content="Что такое VLESS+Reality — VPN который работает в России">
+  <meta property="og:description" content="Простое объяснение технологии которая обходит ТСПУ. Почему OpenVPN и WireGuard уже не работают в России.">
+  <meta property="og:url" content="https://shizovpn.github.io/vless-reality.html">
+  <meta property="og:type" content="article">
+  <meta name="yandex-verification" content="5d6f035bca5e4cab">
+  <link rel="icon" type="image/x-icon" href="https://shizovpn.github.io/favicon.ico">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f8fc; --surface: #ffffff; --text: #1a1d2e; --muted: #5a6375;
+      --accent: #0077ff; --accent-light: #e8f0ff; --border: #e2e6ef; --code-bg: #f0f2f8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0d0f1a; --surface: #151826; --text: #dde4f0; --muted: #7a88a8;
+        --accent: #4a9eff; --accent-light: #101c30; --border: #1f2438; --code-bg: #1a1e2e;
+      }
+    }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 0; }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .cta-btn { background: var(--accent); color: #fff; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    .hero { padding: 48px 0 32px; }
+    .hero h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.25; margin-bottom: 16px; }
+    .hero .lead { color: var(--muted); font-size: 1.1rem; }
+    article { padding: 0 0 64px; }
+    article h2 { font-size: 1.4rem; margin: 40px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    article p { margin-bottom: 16px; }
+    article ul { padding-left: 24px; margin-bottom: 16px; }
+    article li { margin-bottom: 8px; }
+    .analogy { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .analogy .label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 8px; }
+    .schema { background: var(--code-bg); border-radius: 12px; padding: 20px; margin: 20px 0; font-family: monospace; font-size: 0.9rem; line-height: 2; overflow-x: auto; }
+    .schema .ok { color: #2ecc71; }
+    .schema .bad { color: #e74c3c; }
+    .schema .muted { color: var(--muted); }
+    .highlight-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+    .cta-section { background: var(--surface); border: 2px solid var(--accent); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-section h2 { border: none; font-size: 1.4rem; margin: 0 0 12px; }
+    .cta-section p { color: var(--muted); margin-bottom: 20px; }
+    .cta-big { display: inline-block; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-size: 1.05rem; font-weight: 700; }
+    .back { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 600; margin-bottom: 8px; }
+    .faq-a { color: var(--muted); }
+    footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; text-align: center; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/">Shizo VPN</a>
+    <a class="cta-btn" href="https://api.shizovpn.online">Попробовать</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <p style="margin-bottom:12px"><a class="back" href="/">← На главную</a></p>
+    <h1>Что такое VLESS+Reality и почему это лучший VPN для России</h1>
+    <p class="lead">Простое объяснение технологии без воды. Почему OpenVPN и WireGuard уже не работают, и как Reality обходит российскую цензуру.</p>
+  </div>
+
+  <article>
+    <h2>Проблема: обычные VPN уже не работают</h2>
+    <p>Система ТСПУ (технические средства противодействия угрозам) установлена у всех российских операторов с 2019 года. Это оборудование анализирует интернет-трафик в реальном времени — не просто IP-адреса, а сами пакеты данных.</p>
+    <p>OpenVPN и WireGuard имеют характерные «отпечатки» — паттерны пакетов, по которым ТСПУ их мгновенно распознаёт и блокирует соединение. В 2026 году эти протоколы практически не работают на МТС, Мегафон и Билайн.</p>
+
+    <div class="analogy">
+      <div class="label">Аналогия</div>
+      <p>Представьте таможню, которая умеет определять контрабанду по форме чемодана — даже не открывая его. OpenVPN всегда «выглядит» одинаково, таможня его знает. VLESS+Reality меняет форму чемодана так, что он неотличим от обычного багажа.</p>
+    </div>
+
+    <h2>Как работает Reality</h2>
+    <p>Reality — это дополнение к протоколу VLESS (облегчённый преемник V2Ray). Его ключевая идея: <strong>заимствовать TLS-сертификат у реального крупного сайта</strong>.</p>
+    <p>Когда ваш VPN-клиент подключается к серверу, он представляется как обращение к крупному легитимному домену — например, к CDN или банку. ТСПУ видит обычное HTTPS-соединение и пропускает трафик.</p>
+
+    <div class="schema">
+<span class="muted">Обычный VPN:</span>
+Ваш телефон → [ТСПУ видит: VPN-трафик] → <span class="bad">БЛОК</span>
+
+<span class="muted">VLESS+Reality:</span>
+Ваш телефон → [ТСПУ видит: HTTPS к обычному сайту] → <span class="ok">ПРОПУСКАЕТ</span> → VPN-сервер
+    </div>
+
+    <h2>Технические особенности</h2>
+    <ul>
+      <li><strong>Порт 443</strong> — стандартный HTTPS. Заблокировать его = выключить весь интернет-банкинг.</li>
+      <li><strong>Нет фиксированной сигнатуры</strong> — каждое соединение криптографически уникально, нельзя составить «чёрный список».</li>
+      <li><strong>Нет логов</strong> — сервер не хранит информацию о сессиях.</li>
+      <li><strong>Высокая скорость</strong> — VLESS легче OpenVPN, накладные расходы минимальны.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>Почему ТСПУ не может заблокировать Reality:</strong> чтобы заблокировать этот трафик, РКН пришлось бы заблокировать весь HTTPS — то есть отключить онлайн-банки, госуслуги, маркетплейсы. Это политически невозможно.
+    </div>
+
+    <h2>Часто задаваемые вопросы</h2>
+    <div>
+      <div class="faq-item">
+        <div class="faq-q">Это легально?</div>
+        <div class="faq-a">Использование VPN для личных целей в России не запрещено. Закон касается VPN-провайдеров, которые не подключились к реестру РКН — это касается бизнеса, не пользователей.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">На каких устройствах работает?</div>
+        <div class="faq-a">iOS, Android, Windows, macOS, Linux — через приложения v2rayNG, Hiddify, v2rayN, Streisand.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Почему с VPN YouTube работает быстрее?</div>
+        <div class="faq-a">ТСПУ намеренно замедляет YouTube-трафик. VPN шифрует трафик — ТСПУ не может определить что это YouTube и не замедляет. Эффект: скорость выше без VPN.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Чем отличается от других VPN-сервисов?</div>
+        <div class="faq-a">Большинство коммерческих VPN используют OpenVPN или WireGuard. Их IP-адреса внесены в чёрные списки РКН. Shizo VPN использует VLESS+Reality на личном сервере без «истории блокировок».</div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Попробуйте Shizo VPN</h2>
+      <p>VLESS+Reality, сервер в Финляндии. Работает на любом операторе в России. 3 дня бесплатно — без карты.</p>
+      <a class="cta-big" href="https://api.shizovpn.online">Начать бесплатно →</a>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Shizo VPN · <a href="/" style="color:inherit">Главная</a> · <a href="/kak-obojti-blokirovki.html" style="color:inherit">Как обойти блокировки</a></p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Что такое VLESS+Reality — технология VPN которую не блокирует Россия",
+  "description": "Простое объяснение протокола VLESS+Reality: почему он работает там где OpenVPN и WireGuard заблокированы.",
+  "url": "https://shizovpn.github.io/vless-reality.html",
+  "author": {"@type": "Organization", "name": "Shizo VPN"},
+  "publisher": {"@type": "Organization", "name": "Shizo VPN", "url": "https://shizovpn.github.io"}
+}
+</script>
+</body>
+</html>
