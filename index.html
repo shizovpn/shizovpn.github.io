@@ -543,6 +543,7 @@ async function doLogin() {
 
 async function loadCabinet() {
   const res = await apiAuth('/api/me/subscription');
+  if (res.email_verified === false) { show('verify'); return; }
   if (res.status === 'active') showActiveSub(res);
   else show('cabinet-empty');
 }
